@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html">
+
+    <h:head>
+        <title><ui:insert name="title">Default title</ui:insert>
+        </title>
+
+
+    </h:head>
+    <h:body>
+<h:form>
+
+    <p:growl id="messages" autoUpdate="true"/>
+
+    <p:panelMenu style="width:200px">
+        <p:submenu label="Ajax Menuitems">
+            <p:menuitem value="Save" actionListener="#{menuBean.save}" icon="ui-icon-disk" />
+            <p:menuitem value="Update" actionListener="#{menuBean.save}"  icon="ui-icon-arrowrefresh-1-w" />
+        </p:submenu>
+        <p:submenu label="Non-Ajax Menuitem">
+            <p:menuitem value="Delete" actionListener="#{menuBean.save}"  ajax="false" icon="ui-icon-close"/>
+        </p:submenu>
+        <p:separator />
+        <p:submenu label="Navigations" >
+            <p:submenu label="Links" icon="ui-icon-extlink">
+                <p:submenu label="PrimeFaces" icon="ui-icon-heart">
+                    <p:menuitem value="Home" url="http://www.primefaces.org" icon="ui-icon-home" />
+                    <p:menuitem value="Docs" url="http://www.primefaces.org/documentation.html" icon="ui-icon-document" />
+                    <p:menuitem value="Download" url="http://www.primefaces.org/downloads.html" icon="ui-icon-arrowthick-1-s" />
+                    <p:menuitem value="Support" url="http://www.primefaces.org/support.html" icon="ui-icon-wrench" />
+                </p:submenu>
+            </p:submenu>
+            <p:menuitem value="Mobile" outcome="/mobile/index" icon="ui-icon-signal"/>
+        </p:submenu>
+    </p:panelMenu>
+
+</h:form>
+    </h:body>
+
+
+
+</f:view>
+
+</HTML>

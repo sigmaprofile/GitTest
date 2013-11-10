@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <h:head>
+        <base href="." />
+        <title><ui:insert name="title">Default Login Page</ui:insert>
+        </title>
+        <style type="text/css">
+            .bck  {
+                background: url('../images/login_screen.png') center -40px repeat transparent;
+                background-size: 580px auto;
+
+                ;
+            }
+        </style>
+
+    </h:head>
+    <h:body onload ="PF('dlg').show()" style="background-color: gray;" >
+
+
+
+        <h:form id="form">
+
+
+            <p:growl id="growl" showDetail="true" life="3000" />
+
+            <p:dialog id="dialog" header="Login" widgetVar="dlg" resizable="false" styleClass="bck">
+
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel for="username" value="Username:" style="color: white"/>
+                    <p:inputText value="#{loginBean.username}"
+                                 id="username" required="true" label="username" />
+
+                    <h:outputLabel for="password" value="Password:" style="color: white"/>
+                    <h:inputSecret value="#{loginBean.password}"
+                                   id="password" required="true" label="password" />
+
+                    <f:facet name="footer">
+                        <p:commandButton id="loginButton" value="Login" update="growl"
+                                         actionListener="#{loginBean.login}"
+                                         oncomplete="handleLoginRequest(xhr, status, args)"/>
+                    </f:facet>
+                </h:panelGrid>
+
+            </p:dialog>
+        </h:form>
+
+        <script type="text/javascript">
+            function handleLoginRequest(xhr, status, args) {
+                if(args.validationFailed || !args.loggedIn) {
+                    PF('dlg').jq.effect("shake", { times:5 }, 100);
+                }
+                else {
+                    PF('dlg').hide();
+                    $('#loginLink').fadeOut();
+                }
+            }
+        </script>
+
+
+
+
+
+
+    </h:body>
+</f:view>
+</html>
+
